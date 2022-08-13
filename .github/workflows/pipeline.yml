@@ -1,0 +1,22 @@
+# Nome do Workflow
+name: DevOpsLab Pipeline
+
+# Evento que irá acionar a pipeline
+# (on) ativa o evento (push) de push (branches) na branch (main) main
+on: 
+  push:
+    branches:
+      - main
+
+# Descrição dos jobs da pipe
+# (build) nome do job 
+#(runs-on) define a máquina virtual com sistema operacional na versão XYZ que o job será executado
+#(steps) definimos as atividades do Job, no caso o step se chama Git Clone (name) 
+# esse step usa uma action (uses) chamada checkout na versão 2 (que copia o código do github para a vm)
+#eu poderia colocar o comando direto ao invés de usar a action usando um run: git clone https://github.com/evelynesa/devOpsLab.git
+jobs:
+  Build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Git Clone
+        uses: actions/checkout@v2
