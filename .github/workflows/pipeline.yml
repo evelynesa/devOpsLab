@@ -14,9 +14,24 @@ on:
 #(steps) definimos as atividades do Job, no caso o step se chama Git Clone (name) 
 # esse step usa uma action (uses) chamada checkout na versão 2 (que copia o código do github para a vm)
 #eu poderia colocar o comando direto ao invés de usar a action usando um run: git clone https://github.com/evelynesa/devOpsLab.git
+
 jobs:
   Build:
     runs-on: ubuntu-latest
     steps:
       - name: Git Clone
         uses: actions/checkout@v2
+        
+        #agora vamos instalar o Python que é a linguagem da nossa aplicacao
+      - name: Setup Python
+        uses: actions/setup-python@v2
+        with:
+          python-version: '3.7.11'
+          
+        #agora vamos instalar o Flask que é lib do Python para testes
+      - name: Install Requirements
+        run:  pip install flask
+        
+        #agora vamos executar o comando de testes              
+      - name: Unit Test
+        run: python -m unittest -v test
