@@ -26,7 +26,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v2
         with:
-          python-version: '3.7.11'
+          python-version: '3.10'
           
         #agora vamos instalar o Flask que é lib do Python para testes
       - name: Install Requirements
@@ -35,6 +35,13 @@ jobs:
         #agora vamos executar o comando de testes              
       - name: Unit Test
         run: python -m unittest -v test
+      
+      #agora vamos adicionar a stack do sonar para que seja feita a qualidade de código
+      - name: SonarCloud Scan
+        uses: SonarSource/sonarcloud-github-action@master
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }} # Needed to get PR information, if any
+          SONAR_TOKEN: ${{ secrets.SONAR_TOKEN }}
 
 #Agora vamos configurar o deploy da aplicacao no Orquestrador de Containers
   Deploy:
