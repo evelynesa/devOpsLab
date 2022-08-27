@@ -5,7 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def pagina_inicial():
-    return "Lab DevOps - Evelyn Desafio 01 - Em Docker!"
+    return "Lab DevOps - Evelyn Desafio 01 - Acaboouuu :D"
 
 if __name__ == '__main__':
     port = os.getenv('PORT')
