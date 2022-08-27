@@ -1,0 +1,6 @@
+Dockerfile
+.git
+.gitignore
+Procfile
+Readme.md
+sonar-project.properties
